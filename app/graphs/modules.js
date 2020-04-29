@@ -89,33 +89,33 @@ app.stats.modules.forEach(function(module, idx) {
 		});
 	});
 });
-var s = new sigma({
-	graph: {
-		nodes: nodes,
-		edges: edges
-	},
-	renderer: {
-		type: "canvas",
-		container: element
-	},
-	settings: {
-		edgeColor: "target",
-		maxNodeSize: 4,
-		minNodeSize: 4,
-		maxEdgeSize: 2,
-		minEdgeSize: 0.05
-	}
-});
+// var s = new sigma({
+// 	graph: {
+// 		nodes: nodes,
+// 		edges: edges
+// 	},
+// 	renderer: {
+// 		type: "canvas",
+// 		container: element
+// 	},
+// 	settings: {
+// 		edgeColor: "target",
+// 		maxNodeSize: 4,
+// 		minNodeSize: 4,
+// 		maxEdgeSize: 2,
+// 		minEdgeSize: 0.05
+// 	}
+// });
 
-var activeModuleUid = null;
+// var activeModuleUid = null;
 
-s.bind("clickNode", function(e) {
-	if (e.data.node.moduleUid === activeModuleUid)
-		window.location.hash = "#modules";
-	else window.location.hash = "#module/" + e.data.node.moduleUid;
-});
+// s.bind("clickNode", function(e) {
+// 	if (e.data.node.moduleUid === activeModuleUid)
+// 		window.location.hash = "#modules";
+// 	else window.location.hash = "#module/" + e.data.node.moduleUid;
+// });
 
-s.refresh();
+// s.refresh();
 
 exports.show = function() {
 	element.style.display = "block";
