@@ -4,16 +4,17 @@ exports.mapChunks = null;
 
 function load(stats) {
 	stats.assets = stats.assets || [];
+	stats.modules = stats.modules || [];
 	stats.assets.sort(function(a, b) {
 		return b.size - a.size;
 	});
-	stats.modules && stats.modules.sort(function(a, b) {
+	stats.modules.sort(function(a, b) {
 		return a.id - b.id;
 	});
 	var mapModules = {};
 	var mapModulesIdent = {};
 	var mapModulesUid = {};
-	stats.modules && stats.modules.forEach(function(module, idx) {
+	stats.modules.forEach(function(module, idx) {
 		mapModules[module.id] = module;
 		mapModulesIdent["$" + module.identifier] = module;
 		mapModulesUid[(module.uid = idx)] = module;
@@ -25,7 +26,7 @@ function load(stats) {
 		mapChunks[chunk.id] = chunk;
 		chunk.children = [];
 	});
-	stats.modules && stats.modules.forEach(function(module) {
+	stats.modules.forEach(function(module) {
 		module.reasons = module.reasons || [];
 		module.reasons.forEach(function(reason) {
 			var m = mapModulesIdent["$" + reason.moduleIdentifier];
@@ -67,7 +68,7 @@ function load(stats) {
 			origin.moduleUid = m.uid;
 		});
 	});
-	stats.modules && stats.modules.forEach(function(module) {
+	stats.modules.forEach(function(module) {
 		module.dependencies.sort(function(a, b) {
 			if (!a.loc && !b.loc) return 0;
 			if (!a.loc) return 1;
